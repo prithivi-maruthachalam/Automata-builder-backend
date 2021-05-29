@@ -123,12 +123,13 @@ server.post('/runMachine',async (req, res) => {
             res.status(500).send(false)
         }
 
-    } catch {
+    } catch(err) {
         if (err.sqlMessage) {
-            console.log(sqlMessage)
+            console.log(err.sqlMessage)
             res.status(400).send(err.sqlMessage)
+        } else {
+            res.status(500).send(false)
         }
-        res.status(500).send(false)
     }
 })
 
